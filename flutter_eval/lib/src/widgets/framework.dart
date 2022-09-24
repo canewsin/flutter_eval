@@ -387,10 +387,11 @@ class $State$bridge<T extends StatefulWidget> extends State<T> with $Bridge<Stat
           return null;
         });
       case 'widget':
-        if (widget is $Instance) {
-          return widget as $Instance;
+        final w = super.widget;
+        if (w is $Instance) {
+          return w as $Instance;
         }
-        return $Widget.wrap(widget);
+        return $Widget.wrap(w);
     }
 
     throw UnimplementedError('Unknown property "$identifier"');

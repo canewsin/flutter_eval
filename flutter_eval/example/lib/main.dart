@@ -35,7 +35,9 @@ class EvalExample extends StatelessWidget {
                 final String title;
 
                 @override
-                State<MyHomePage> createState() => _MyHomePageState();
+                State<MyHomePage> createState() {
+                  return _MyHomePageState();
+                }
               }
 
               class _MyHomePageState extends State<MyHomePage> {

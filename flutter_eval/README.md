@@ -6,9 +6,9 @@ enabling painless creation of fully dynamic Flutter apps and widgets that can be
 from a file or the Internet at runtime. It provides both a set of compile-time descriptors and directives,
 as well as runtime bridge classes and wrappers, with a seamless API that makes usage easy.
 
-| dart_eval    | [![pub package](https://img.shields.io/pub/v/dart_eval.svg?label=dart_eval&color=teal)](https://pub.dev/packages/dart_eval)          |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
-| flutter_eval | [![pub package](https://img.shields.io/pub/v/flutter_eval.svg?label=flutter_eval&color=blue)](https://pub.dev/packages/flutter_eval) |
+| dart_eval    | [![dart_eval package](https://img.shields.io/pub/v/dart_eval.svg?label=dart_eval&color=teal)](https://pub.dev/packages/dart_eval)             | [![dart_eval_runtime package](https://img.shields.io/pub/v/dart_eval_runtime.svg?label=dart_eval_runtime&color=teal)](https://pub.dev/packages/dart_eval_runtime)             |        
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------  |
+| flutter_eval | [![flutter_eval package](https://img.shields.io/pub/v/flutter_eval.svg?label=flutter_eval&color=blue)](https://pub.dev/packages/flutter_eval) | [![flutter_eval_runtime package](https://img.shields.io/pub/v/flutter_eval_runtime.svg?label=flutter_eval_runtime&color=blue)](https://pub.dev/packages/flutter_eval_runtime) |
 
 
 Although flutter_eval is already the best solution for native Dart Flutter code push,
