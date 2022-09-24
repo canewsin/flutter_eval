@@ -1,3 +1,7 @@
+library flutter_eval_runtime;
+
+export 'src/flutter_eval_runtime.dart';
+
 import 'package:dart_eval_runtime/dart_eval_runtime.dart';
 import 'package:flutter_eval_runtime/src/animation/curves.dart';
 import 'package:flutter_eval_runtime/src/foundation/change_notifier.dart';

@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 
-import '../flutter_eval.dart';
+import '../flutter_eval_runtime.dart';
 
 /// A [RuntimeWidget] loads and runs EVC bytecode from a file, asset, or URL
 /// at runtime and displays the returned [Widget].

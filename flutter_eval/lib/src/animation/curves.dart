@@ -56,31 +56,12 @@ class Curves {
 }
 ''';
 
-class $ParametricCurve implements $Instance {
+class $ParametricCurve {
   static const $type =
       BridgeTypeRef.spec(BridgeTypeSpec('package:flutter/src/animation/curves.dart', 'ParametricCurve'));
 
   static const $declaration = BridgeClassDef(BridgeClassType($type, isAbstract: true),
       constructors: {}, methods: {}, getters: {}, setters: {}, fields: {}, wrap: true);
-
-  @override
-  $Value? $getProperty(Runtime runtime, String identifier) {
-    throw UnimplementedError();
-  }
-
-  @override
-  get $reified => throw UnimplementedError();
-
-  @override
-  int get $runtimeType => throw UnimplementedError();
-
-  @override
-  void $setProperty(Runtime runtime, String identifier, $Value value) {
-    throw UnimplementedError();
-  }
-
-  @override
-  get $value => throw UnimplementedError();
 }
 
 /// dart_eval wrapper for [Curve]
