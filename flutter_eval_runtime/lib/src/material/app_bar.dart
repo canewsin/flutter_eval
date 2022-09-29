@@ -8,6 +8,7 @@ class $AppBar implements $Instance {
   static $Value? $new(Runtime runtime, $Value? target, List<$Value?> args) {
     return $AppBar.wrap(AppBar(
       title: args[0]?.$value,
+      backgroundColor: args[1]?.$value,
     ));
   }
 

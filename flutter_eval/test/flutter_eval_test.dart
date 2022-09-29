@@ -133,9 +133,9 @@ void main() {
     runtime.setup();
     final result = runtime.executeLib('package:example/main.dart', 'main');
     expect(result, isNotNull);
-    expect(result[0], isA<$Alignment>());
-    expect((result[0] as $Alignment).$value.x, -1.0);
-    expect((result[0] as $Alignment).$value.y, -1.0);
+    expect(result[0].$value, isA<Alignment>());
+    expect((result[0].$value as Alignment).x, -1.0);
+    expect((result[0].$value as Alignment).y, -1.0);
   });
 
   test('Curves', () {
@@ -157,15 +157,15 @@ void main() {
     runtime.setup();
     final result = runtime.executeLib('package:example/main.dart', 'main');
     expect(result, isNotNull);
-    expect(result[0], isA<$Cubic>());
-    expect(((result[0] as $Cubic).$value).a, 0.41999998688697815);
-    expect(((result[0] as $Cubic).$value).b, 0.0);
-    expect(((result[0] as $Cubic).$value).c, 1.0);
-    expect(((result[0] as $Cubic).$value).d, 1.0);
+    expect(result[0].$value, isA<Cubic>());
+    expect((result[0].$value as Cubic).a, 0.41999998688697815);
+    expect((result[0].$value as Cubic).b, 0.0);
+    expect((result[0].$value as Cubic).c, 1.0);
+    expect((result[0].$value as Cubic).d, 1.0);
 
-    expect(((result[1] as $Cubic).$value).a, 0.0);
-    expect(((result[1] as $Cubic).$value).b, 0.0);
-    expect(((result[1] as $Cubic).$value).c, 0.5799999833106995);
-    expect(((result[1] as $Cubic).$value).d, 1.0);
+    expect((result[1].$value as Cubic).a, 0.0);
+    expect((result[1].$value as Cubic).b, 0.0);
+    expect((result[1].$value as Cubic).c, 0.5799999833106995);
+    expect((result[1].$value as Cubic).d, 1.0);
   });
 }

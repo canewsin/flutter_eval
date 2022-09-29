@@ -1714,91 +1714,36 @@ class Colors {
 
 ''';
 
-class $MaterialColor implements $Instance {
-  static const $type = BridgeTypeRef.spec(BridgeTypeSpec('package:flutter/src/material/colors.dart', 'MaterialColor'));
+const $MaterialColorType =
+    BridgeTypeRef.spec(BridgeTypeSpec('package:flutter/src/material/colors.dart', 'MaterialColor'));
 
-  static const $declaration =
-      BridgeClassDef(BridgeClassType($type, generics: {'T': BridgeGenericParam()}, $extends: $ColorSwatch.$type),
-          constructors: {
-            '': BridgeConstructorDef(BridgeFunctionDef(returns: BridgeTypeAnnotation($type), params: [
-              BridgeParameter('primary', BridgeTypeAnnotation(BridgeTypeRef.type(RuntimeTypes.intType)), false),
-              BridgeParameter('_swatch', BridgeTypeAnnotation(BridgeTypeRef.type(RuntimeTypes.mapType)), false)
-            ])),
-          },
-          methods: {},
-          getters: {},
-          setters: {},
-          fields: {},
-          wrap: true);
+const $MaterialColorDeclaration = BridgeClassDef(
+    BridgeClassType($MaterialColorType, generics: {'T': BridgeGenericParam()}, $extends: $ColorSwatchType),
+    constructors: {
+      '': BridgeConstructorDef(BridgeFunctionDef(returns: BridgeTypeAnnotation($MaterialColorType), params: [
+        BridgeParameter('primary', BridgeTypeAnnotation(BridgeTypeRef.type(RuntimeTypes.intType)), false),
+        BridgeParameter('_swatch', BridgeTypeAnnotation(BridgeTypeRef.type(RuntimeTypes.mapType)), false)
+      ])),
+    },
+    methods: {},
+    getters: {},
+    setters: {},
+    fields: {},
+    wrap: true);
 
-  static $Value? $new(Runtime runtime, $Value? target, List<$Value?> args) {
-    return $MaterialColor.wrap(MaterialColor(args[0]!.$value, (args[1]!.$reified as Map).cast<int, Color>()));
-  }
+const $MaterialAccentColorType =
+    BridgeTypeRef.spec(BridgeTypeSpec('package:flutter/src/material/colors.dart', 'MaterialAccentColor'));
 
-  $MaterialColor.wrap(this.$value) : _superclass = $ColorSwatch.wrap($value);
-
-  @override
-  final MaterialColor $value;
-  final $Instance _superclass;
-
-  @override
-  $Value? $getProperty(Runtime runtime, String identifier) {
-    return _superclass.$getProperty(runtime, identifier);
-  }
-
-  @override
-  ColorSwatch get $reified => $value;
-
-  @override
-  int get $runtimeType => throw UnimplementedError();
-
-  @override
-  void $setProperty(Runtime runtime, String identifier, $Value value) {
-    return _superclass.$setProperty(runtime, identifier, value);
-  }
-}
-
-class $MaterialAccentColor implements $Instance {
-  static const $type =
-      BridgeTypeRef.spec(BridgeTypeSpec('package:flutter/src/material/colors.dart', 'MaterialAccentColor'));
-
-  static const $declaration =
-      BridgeClassDef(BridgeClassType($type, generics: {'T': BridgeGenericParam()}, $extends: $ColorSwatch.$type),
-          constructors: {
-            '': BridgeConstructorDef(BridgeFunctionDef(returns: BridgeTypeAnnotation($type), params: [
-              BridgeParameter('primary', BridgeTypeAnnotation(BridgeTypeRef.type(RuntimeTypes.intType)), false),
-              BridgeParameter('_swatch', BridgeTypeAnnotation(BridgeTypeRef.type(RuntimeTypes.mapType)), false)
-            ])),
-          },
-          methods: {},
-          getters: {},
-          setters: {},
-          fields: {},
-          wrap: true);
-
-  static $Value? $new(Runtime runtime, $Value? target, List<$Value?> args) {
-    return $MaterialAccentColor.wrap(MaterialAccentColor(args[0]!.$value, args[1]!.$reified));
-  }
-
-  $MaterialAccentColor.wrap(this.$value) : _superclass = $ColorSwatch.wrap($value);
-
-  @override
-  final MaterialAccentColor $value;
-  final $Instance _superclass;
-
-  @override
-  $Value? $getProperty(Runtime runtime, String identifier) {
-    return _superclass.$getProperty(runtime, identifier);
-  }
-
-  @override
-  ColorSwatch get $reified => $value;
-
-  @override
-  int get $runtimeType => throw UnimplementedError();
-
-  @override
-  void $setProperty(Runtime runtime, String identifier, $Value value) {
-    return _superclass.$setProperty(runtime, identifier, value);
-  }
-}
+const $MaterialAccentColorDeclaration = BridgeClassDef(
+    BridgeClassType($MaterialAccentColorType, generics: {'T': BridgeGenericParam()}, $extends: $ColorSwatchType),
+    constructors: {
+      '': BridgeConstructorDef(BridgeFunctionDef(returns: BridgeTypeAnnotation($MaterialAccentColorType), params: [
+        BridgeParameter('primary', BridgeTypeAnnotation(BridgeTypeRef.type(RuntimeTypes.intType)), false),
+        BridgeParameter('_swatch', BridgeTypeAnnotation(BridgeTypeRef.type(RuntimeTypes.mapType)), false)
+      ])),
+    },
+    methods: {},
+    getters: {},
+    setters: {},
+    fields: {},
+    wrap: true);

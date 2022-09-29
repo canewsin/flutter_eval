@@ -48,73 +48,15 @@ export 'dart:ui' show
 export 'package:flutter/foundation.dart' show VoidCallback;
  ''';
 
-class $VerticalDirection implements $Instance {
-  static const $type =
-      BridgeTypeRef.spec(BridgeTypeSpec('package:flutter/src/painting/basic_types.dart', 'VerticalDirection'));
+const $VerticalDirectionType =
+    BridgeTypeRef.spec(BridgeTypeSpec('package:flutter/src/painting/basic_types.dart', 'VerticalDirection'));
 
-  static const $declaration =
-      BridgeEnumDef($type, methods: {}, getters: {}, setters: {}, values: ['up', 'down'], fields: {});
+const $VerticalDirectionDeclaration =
+    BridgeEnumDef($VerticalDirectionType, methods: {}, getters: {}, setters: {}, values: ['up', 'down'], fields: {});
 
-  static final $values = {
-    'up': $VerticalDirection.wrap(VerticalDirection.up),
-    'down': $VerticalDirection.wrap(VerticalDirection.down),
-  };
+/// dart_eval type definition for [Axis]
+const $AxisType = BridgeTypeRef.spec(BridgeTypeSpec('package:flutter/src/painting/basic_types.dart', 'Axis'));
 
-  $VerticalDirection.wrap(this.$value);
-
-  @override
-  final VerticalDirection $value;
-
-  @override
-  get $reified => $value;
-
-  @override
-  $Value? $getProperty(Runtime runtime, String identifier) {
-    throw UnimplementedError();
-  }
-
-  @override
-  int get $runtimeType => throw UnimplementedError();
-
-  @override
-  void $setProperty(Runtime runtime, String identifier, $Value value) {
-    throw UnimplementedError();
-  }
-}
-
-/// dart_eval wrapper for [Axis]
-class $Axis implements $Instance {
-  /// dart_eval type definition for [Axis]
-  static const $type = BridgeTypeRef.spec(BridgeTypeSpec('package:flutter/src/painting/basic_types.dart', 'Axis'));
-
-  /// dart_eval class declaration for [Axis]
-  static const $declaration =
-      BridgeEnumDef($type, methods: {}, getters: {}, setters: {}, values: ['horizontal', 'vertical'], fields: {});
-
-  /// Runtime enum values
-  static final $values = {
-    'horizontal': $Axis.wrap(Axis.horizontal),
-    'vertical': $Axis.wrap(Axis.vertical),
-  };
-
-  $Axis.wrap(this.$value);
-
-  @override
-  final Axis $value;
-
-  @override
-  get $reified => $value;
-
-  @override
-  $Value? $getProperty(Runtime runtime, String identifier) {
-    throw UnimplementedError();
-  }
-
-  @override
-  int get $runtimeType => throw UnimplementedError();
-
-  @override
-  void $setProperty(Runtime runtime, String identifier, $Value value) {
-    throw UnimplementedError();
-  }
-}
+/// dart_eval class declaration for [Axis]
+const $AxisDeclaration =
+    BridgeEnumDef($AxisType, methods: {}, getters: {}, setters: {}, values: ['horizontal', 'vertical'], fields: {});

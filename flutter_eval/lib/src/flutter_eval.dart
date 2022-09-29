@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:dart_eval/dart_eval.dart';
 import 'package:dart_eval/dart_eval_bridge.dart';
@@ -71,12 +72,12 @@ class _CompilerWidgetState extends State<CompilerWidget> {
   @override
   void initState() {
     super.initState();
-    compiler = Compiler();
-    setupFlutterForCompile(compiler);
     _recompile(false);
   }
 
   void _recompile(bool inBuild) {
+    compiler = Compiler();
+    setupFlutterForCompile(compiler);
     final program = compiler.compile(widget.packages);
 
     if (!kReleaseMode && widget.outputFile != null) {
@@ -90,6 +91,7 @@ class _CompilerWidgetState extends State<CompilerWidget> {
     }
 
     if (!inBuild) {
+      codeCache = widget.packages;
       setState(setupRuntime);
     } else {
       setupRuntime();
@@ -100,11 +102,11 @@ class _CompilerWidgetState extends State<CompilerWidget> {
   Widget build(BuildContext context) {
     if (widget.packages != codeCache) {
       codeCache = widget.packages;
-      _recompile(false);
+      _recompile(true);
     }
 
     final result = runtime.executeLib(widget.library, widget.function, widget.args);
-    return (result as $Value).$value;
+    return Container(child: (result as $Value).$value, key: ValueKey(Random().nextDouble()));
   }
 }
 
@@ -193,7 +195,7 @@ class _EvalWidgetState extends State<EvalWidget> {
         _loadFromAsset(widget.assetPath);
       } else {
         final scheme = widget.uri!.scheme;
-        if (scheme == 'file') {
+        if (scheme == 'file' && !kIsWeb) {
           _loadFromFile();
         } else if (scheme == 'asset') {
           _loadFromAsset(widget.uri!.path);
@@ -209,7 +211,7 @@ class _EvalWidgetState extends State<EvalWidget> {
   void _recompile(bool inBuild) {
     final program = compiler.compile(widget.packages);
 
-    if (!kReleaseMode) {
+    if (!kReleaseMode && !kIsWeb) {
       _writeBytesToPath(widget.assetPath, program.write());
     }
 
