@@ -1,6 +1,5 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:dart_eval/dart_eval.dart';
 import 'package:dart_eval/dart_eval_bridge.dart';
 import 'package:dart_eval/stdlib/core.dart';
 import 'package:flutter/material.dart';
@@ -120,7 +119,6 @@ class $ThemeData implements $Instance {
       primaryColorDark: args[5]?.$value,
       canvasColor: args[6]?.$value,
       scaffoldBackgroundColor: args[7]?.$value,
-      bottomAppBarColor: args[8]?.$value,
       cardColor: args[9]?.$value,
       dividerColor: args[10]?.$value,
       highlightColor: args[11]?.$value,
@@ -155,8 +153,6 @@ class $ThemeData implements $Instance {
         return $Color.wrap($value.canvasColor);
       case 'scaffoldBackgroundColor':
         return $Color.wrap($value.scaffoldBackgroundColor);
-      case 'bottomAppBarColor':
-        return $Color.wrap($value.bottomAppBarColor);
       case 'cardColor':
         return $Color.wrap($value.cardColor);
       case 'dividerColor':

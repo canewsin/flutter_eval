@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:dart_eval/dart_eval.dart';
 import 'package:dart_eval/dart_eval_bridge.dart';
 import 'package:dart_eval/stdlib/core.dart';
@@ -11,17 +8,14 @@ import 'package:flutter_eval/src/painting/alignment.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  // This is not actually a test, it just generates the flutter_eval.json file.
-  test('Generate flutter_eval.json', () {
-    final serializer = BridgeSerializer();
-    serializer.addPlugin(const FlutterEvalPlugin());
-    final output = serializer.serialize();
-    File('flutter_eval.json').writeAsStringSync(json.encode(output));
+  late final Compiler compiler;
+
+  setUpAll(() {
+    compiler = Compiler();
+    compiler.addPlugin(flutterEvalPlugin);
   });
 
   test('Can extend StatelessWidget', () {
-    final compiler = Compiler();
-    setupFlutterForCompile(compiler);
     final program = compiler.compile({
       'example': {
         'main.dart': '''
@@ -39,15 +33,13 @@ void main() {
       }
     });
     final runtime = Runtime(program.write().buffer.asByteData());
-    setupFlutterForRuntime(runtime);
+    runtime.addPlugin(flutterEvalPlugin);
     final result = runtime.executeLib('package:example/main.dart', 'MyApp.');
     expect(result, isNotNull);
     expect(result, isA<StatelessWidget>());
   });
 
   test('Listener disposal on a ChangeNotifier', () {
-    final compiler = Compiler();
-    setupFlutterForCompile(compiler);
     final program = compiler.compile({
       'example': {
         'main.dart': '''
@@ -67,14 +59,12 @@ void main() {
       }
     });
     final runtime = Runtime(program.write().buffer.asByteData());
-    setupFlutterForRuntime(runtime);
+    runtime.addPlugin(flutterEvalPlugin);
     expect(() => runtime.executeLib('package:example/main.dart', 'main'),
         prints('listener\n'));
   });
 
   testWidgets('TextField test', (WidgetTester tester) async {
-    final compiler = Compiler();
-    setupFlutterForCompile(compiler);
     final program = compiler.compile({
       'example': {
         'main.dart': '''
@@ -118,7 +108,7 @@ void main() {
       }
     });
     final runtime = Runtime(program.write().buffer.asByteData());
-    setupFlutterForRuntime(runtime);
+    runtime.addPlugin(flutterEvalPlugin);
     await tester.pumpWidget(
         runtime.executeLib('package:example/main.dart', 'MyWidget.'));
     await tester.enterText(find.byType(TextField), 'Hello');
@@ -127,8 +117,6 @@ void main() {
   });
 
   test('Alignment', () {
-    final compiler = Compiler();
-    setupFlutterForCompile(compiler);
     final program = compiler.compile({
       'example': {
         'main.dart': '''
@@ -141,7 +129,7 @@ void main() {
       }
     });
     final runtime = Runtime(program.write().buffer.asByteData());
-    setupFlutterForRuntime(runtime);
+    runtime.addPlugin(flutterEvalPlugin);
     final result = runtime.executeLib('package:example/main.dart', 'main');
     expect(result, isNotNull);
     expect(result[0], isA<$Alignment>());
@@ -150,8 +138,6 @@ void main() {
   });
 
   test('Curves.easeIn and easeOut', () {
-    final compiler = Compiler();
-    setupFlutterForCompile(compiler);
     final program = compiler.compile({
       'example': {
         'main.dart': '''
@@ -164,7 +150,7 @@ void main() {
       }
     });
     final runtime = Runtime(program.write().buffer.asByteData());
-    setupFlutterForRuntime(runtime);
+    runtime.addPlugin(flutterEvalPlugin);
     final result = runtime.executeLib('package:example/main.dart', 'main');
     expect(result, isNotNull);
     expect(result[0], isA<$Cubic>());
@@ -180,8 +166,6 @@ void main() {
   });
 
   test('AppBar with title and actions', () {
-    final compiler = Compiler();
-    setupFlutterForCompile(compiler);
     final program = compiler.compile({
       'example': {
         'main.dart': '''
@@ -204,7 +188,7 @@ void main() {
       }
     });
     final runtime = Runtime(program.write().buffer.asByteData());
-    setupFlutterForRuntime(runtime);
+    runtime.addPlugin(flutterEvalPlugin);
     final result = runtime.executeLib('package:example/main.dart', 'main');
     expect(result, isNotNull);
     expect(result.$value, isA<AppBar>());
@@ -212,8 +196,6 @@ void main() {
   });
 
   test('BoxDecoration with Border.all', () {
-    final compiler = Compiler();
-    setupFlutterForCompile(compiler);
     final program = compiler.compile({
       'example': {
         'main.dart': '''
@@ -231,7 +213,7 @@ void main() {
       }
     });
     final runtime = Runtime(program.write().buffer.asByteData());
-    setupFlutterForRuntime(runtime);
+    runtime.addPlugin(flutterEvalPlugin);
     final result = runtime.executeLib('package:example/main.dart', 'main');
     expect(result, isNotNull);
     expect(result.$value, isA<BoxDecoration>());
@@ -242,8 +224,6 @@ void main() {
   });
 
   test('Stack and Positioned', () {
-    final compiler = Compiler();
-    setupFlutterForCompile(compiler);
     final program = compiler.compile({
       'example': {
         'main.dart': '''
@@ -269,7 +249,7 @@ void main() {
       }
     });
     final runtime = Runtime(program.write().buffer.asByteData());
-    setupFlutterForRuntime(runtime);
+    runtime.addPlugin(flutterEvalPlugin);
     final result = runtime.executeLib('package:example/main.dart', 'main');
     expect(result, isNotNull);
     expect(result.$value, isA<Stack>());
@@ -279,8 +259,6 @@ void main() {
   });
 
   test('ClipRRect', () {
-    final compiler = Compiler();
-    setupFlutterForCompile(compiler);
     final program = compiler.compile({
       'example': {
         'main.dart': '''
@@ -297,7 +275,7 @@ void main() {
       }
     });
     final runtime = Runtime(program.write().buffer.asByteData());
-    setupFlutterForRuntime(runtime);
+    runtime.addPlugin(flutterEvalPlugin);
     final result = runtime.executeLib('package:example/main.dart', 'main');
     expect(result, isNotNull);
     expect(result.$value, isA<ClipRRect>());
@@ -306,8 +284,6 @@ void main() {
   });
 
   testWidgets('Passing a Map', (WidgetTester tester) async {
-    final compiler = Compiler();
-    setupFlutterForCompile(compiler);
     final program = compiler.compile({
       'example': {
         'main.dart': '''
@@ -333,7 +309,7 @@ void main() {
       }
     });
     final runtime = Runtime(program.write().buffer.asByteData());
-    setupFlutterForRuntime(runtime);
+    runtime.addPlugin(flutterEvalPlugin);
     final Map<$String, $Value> map = {$String('title'): $String('Hello World')};
     final result = runtime.executeLib(
         'package:example/main.dart', 'MyWidget.', [$Map.wrap(map), null]);
@@ -342,8 +318,6 @@ void main() {
   });
 
   testWidgets('Callback onClick', (WidgetTester tester) async {
-    final compiler = Compiler();
-    setupFlutterForCompile(compiler);
     final program = compiler.compile({
       'example': {
         'main.dart': '''
@@ -369,7 +343,7 @@ void main() {
       }
     });
     final runtime = Runtime(program.write().buffer.asByteData());
-    setupFlutterForRuntime(runtime);
+    runtime.addPlugin(flutterEvalPlugin);
     String strval = '';
     final result =
         runtime.executeLib('package:example/main.dart', 'MyWidget.', [
@@ -385,8 +359,6 @@ void main() {
   });
 
   testWidgets('GestureDetector onTap', (WidgetTester tester) async {
-    final compiler = Compiler();
-    setupFlutterForCompile(compiler);
     final program = compiler.compile({
       'example': {
         'main.dart': '''
@@ -412,7 +384,7 @@ void main() {
       }
     });
     final runtime = Runtime(program.write().buffer.asByteData());
-    setupFlutterForRuntime(runtime);
+    runtime.addPlugin(flutterEvalPlugin);
     bool tapped = false;
     final result =
         runtime.executeLib('package:example/main.dart', 'MyWidget.', [
@@ -425,5 +397,47 @@ void main() {
     await tester.pumpWidget(result);
     await tester.tap(find.text('Click me'));
     expect(tapped, isTrue);
+  });
+
+  testWidgets('Navigator.push(MaterialPageRoute)', (WidgetTester tester) async {
+    final program = compiler.compile({
+      'example': {
+        'main.dart': '''
+        import 'package:flutter/material.dart';
+        class MyWidget extends StatelessWidget {
+          final void Function(BuildContext context) onTap;
+
+          MyWidget(this.onTap, {super.key});
+
+          @override
+          Widget build(BuildContext context) {
+            return Scaffold(
+              body: Center(
+                child: GestureDetector(
+                  onTap: () => onTap(context),
+                  child: Text('Click me'),
+                ),
+              ),
+            );
+          }
+        }
+        Widget main() {
+          return MaterialApp(home: MyWidget((BuildContext context) {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+              return Text('Hello');
+            }));
+          }));
+        }
+        '''
+      }
+    });
+    final runtime = Runtime(program.write().buffer.asByteData());
+    runtime.addPlugin(flutterEvalPlugin);
+    await tester.pumpWidget(
+        runtime.executeLib('package:example/main.dart', 'main').$value);
+    expect(find.text('Hello'), findsNothing);
+    await tester.tap(find.text('Click me'));
+    await tester.pumpAndSettle();
+    expect(find.text('Hello'), findsOneWidget);
   });
 }
